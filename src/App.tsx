@@ -105,11 +105,11 @@ const App: React.FC = () => {
     );
 };
 
-const True = (
+export const True = (
     <CheckIcon style={{color: 'green', marginLeft: 12, fontSize: 28}}/>
 );
 
-const False = (
+export const False = (
     <ClearIcon style={{color: 'red', marginLeft: 12, fontSize: 28}}/>
 );
 

@@ -1,6 +1,15 @@
 import React, {useState} from 'react'
-import {Question} from "../App";
-import {Button, Checkbox, FormControlLabel, Typography} from "@material-ui/core";
+import {False, Question, True} from "../App";
+import {
+    Button,
+    Checkbox,
+    Dialog,
+    DialogActions,
+    DialogContent, DialogContentText,
+    DialogTitle,
+    FormControlLabel,
+    Typography
+} from "@material-ui/core";
 
 interface QuestionComponentProps {
     question: Question;
@@ -12,6 +21,8 @@ interface QuestionComponentProps {
 export const QuestionComponent = (props: QuestionComponentProps) => {
     const [selectedAnswers, setSelectedAnswers] = useState<number[]>([]);
     const [isAnswered, setIsAnswered] = useState(false);
+    const [openDialog, setOpenDialog] = useState(false);
+    const [isCorrectAnswer, setIsCorrectAnswer] = useState(false);
 
     const handleSelectAnswer = (value: number) => {
         const answersArr = selectedAnswers;
@@ -27,8 +38,8 @@ export const QuestionComponent = (props: QuestionComponentProps) => {
     const handleAnswerButton = () => {
         let isAnswerTrue = true;
         const answerMap = new Map();
-        props.question.result.forEach (ansNumber => {
-           answerMap.set(ansNumber, 1)
+        props.question.result.forEach(ansNumber => {
+            answerMap.set(ansNumber, 1)
         });
         if (props.question.result.length === selectedAnswers.length) {
             selectedAnswers.forEach(selectedAnswer => {
@@ -39,8 +50,14 @@ export const QuestionComponent = (props: QuestionComponentProps) => {
         } else {
             isAnswerTrue = false;
         }
+        setIsCorrectAnswer(isAnswerTrue);
+        setOpenDialog(true);
         props.handleAnswer(props.questionNumber, isAnswerTrue);
         setIsAnswered(true);
+    };
+
+    const handleCloseDialog = () => {
+        setOpenDialog(false)
     };
 
     return (
@@ -82,6 +99,24 @@ export const QuestionComponent = (props: QuestionComponentProps) => {
                     Далее
                 </Button>
             </div>
+
+            <Dialog
+                open={openDialog}
+                onClose={handleCloseDialog}
+            >
+                <DialogTitle>{"Сообщение"}</DialogTitle>
+                <DialogContent style={{display: 'flex'}}>
+                    <Typography variant="h6">
+                    {isCorrectAnswer ? "Вы ответили правильно" : "Ответ неправильный"}
+                    </Typography>
+                    {isCorrectAnswer ? True : False}
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseDialog} color="primary" autoFocus>
+                        Ок
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     )
 };
