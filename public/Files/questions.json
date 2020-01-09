@@ -1,53 +1,50 @@
 [
   {
-    "questionText": "Вопрос 1",
+    "questionText": "Сколько рук у человека?",
     "answers": [
       {
         "number": 1,
-        "text": "Ответ 1"
+        "text": "1"
       },
       {
         "number": 2,
-        "text": "Ответ 2"
+        "text": "2"
       },
       {
         "number": 3,
-        "text": "Ответ 3"
+        "text": "3"
       },
       {
         "number": 4,
-        "text": "Ответ 4"
+        "text": "4"
       }
     ],
     "result": [
-      1,
-      3,
-      4
+      2
     ]
   },
   {
-    "questionText": "Вопрос 2",
+    "questionText": "Как называются руки человека?",
     "answers": [
       {
         "number": 1,
-        "text": "Ответ 1 на вопрос 2"
+        "text": "Правая"
       },
       {
         "number": 2,
-        "text": "Ответ 2 на вопрос 2"
+        "text": "Левая"
       },
       {
         "number": 3,
-        "text": "Ответ 3 на вопрос 2"
+        "text": "Нижняя"
       },
       {
         "number": 4,
-        "text": "Ответ 4 на вопрос 2"
+        "text": "Верхняя"
       }
     ],
     "result": [
-      2,
-      1
+      1,2
     ]
   },
   {

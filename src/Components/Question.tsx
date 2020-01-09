@@ -73,13 +73,21 @@ export const QuestionComponent = (props: QuestionComponentProps) => {
                     if (selectedAnswers.includes(Number(answer.number))) {
                         checked = true
                     }
+
+                    let isTrue = False;
+                    props.question.result.forEach(item => {
+                        if (item === Number(answer.number)) {
+                            isTrue = True
+                        }
+                    });
+
                     return (
                         <FormControlLabel
                             key={answer.text}
                             control={<Checkbox checked={checked}
                                                onChange={(evt) => handleSelectAnswer(Number(evt.target.value))}
                                                value={Number(answer.number)}/>}
-                            label={answer.text}
+                            label={<span>{answer.text}{isAnswered ? isTrue : null}</span>}
                         />
                     )
                 })}
