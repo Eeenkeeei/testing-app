@@ -5,7 +5,7 @@ import {
     Checkbox,
     Dialog,
     DialogActions,
-    DialogContent, DialogContentText,
+    DialogContent,
     DialogTitle,
     FormControlLabel,
     Typography
@@ -74,20 +74,28 @@ export const QuestionComponent = (props: QuestionComponentProps) => {
                         checked = true
                     }
 
-                    let isTrue = False;
+                    let isTrueColor = 'rgba(140,20,23,0.42)';
                     props.question.result.forEach(item => {
                         if (item === Number(answer.number)) {
-                            isTrue = True
+                            isTrueColor = 'rgba(86,152,8,0.39)'
                         }
                     });
 
                     return (
                         <FormControlLabel
                             key={answer.text}
+                            style={{
+                                backgroundColor: isAnswered ? isTrueColor : '',
+                                paddingRight: 10,
+                                margin: 10,
+                                border: '1px solid #e0e0e0',
+                                borderRadius: '4px'
+                            }}
                             control={<Checkbox checked={checked}
+                                               color="primary"
                                                onChange={(evt) => handleSelectAnswer(Number(evt.target.value))}
                                                value={Number(answer.number)}/>}
-                            label={<span>{answer.text}{isAnswered ? isTrue : null}</span>}
+                            label={<span>{answer.text}</span>}
                         />
                     )
                 })}

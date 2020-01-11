@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import './App.css';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -53,6 +53,10 @@ const App: React.FC = () => {
         }
     };
 
+    const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+        setCurrentQuestionNumber(newValue);
+    };
+
     const handleTestEnd = () => {
         setIsTestEnd(true)
     };
@@ -78,6 +82,7 @@ const App: React.FC = () => {
                                 aria-label="Vertical tabs example"
                                 indicatorColor="primary"
                                 className={classes.tabs}
+                                onChange={handleChange}
                             >
                                 {questions.map(question => {
                                     const questionNumber = questions.indexOf(question);
